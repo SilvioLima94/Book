@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <h1>Library</h1>
+    <div class="book-content">
+      <form id="form" action="">
+        <input id="title" type="text" placeholder="Title" />
+        <input id="author" type="text" placeholder="Author" />
+        <input id="pages" type="text" placeholder="Pages" />
+        <label for="read">Read</label>
+
+        <select name="read" id="select">
+          <option value="yes" id="yes">Yes</option>
+          <option value="no" id="no">No</option>
+        </select>
+
+        <button type="submit">Add book</button>
+      </form>
+      <div class="book-wrapper">
+        <div class="book-card"></div>
+      </div>
+    </div>
+  </body>
+</html>
