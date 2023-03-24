@@ -12,49 +12,62 @@ function Book(title, author, pages, read) {
 const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, "No");
 myLibrary.push(theHobbit);
 
-function addBookToLibrary() {
-  const bookTitle = document.getElementById("title").value;
-  const bookAuthor = document.getElementById("author").value;
-  const bookPages = document.getElementById("pages").value;
-  const isRead = document.getElementById("select");
-  isRead.addEventListener("change", (e) => console.log(e.target.value));
-  console.log(isRead);
+let bookTitle = document.getElementById("title");
+let bookAuthor = document.getElementById("author");
+let bookPages = document.getElementById("pages");
+let isRead = document.getElementById("select");
 
-  if (!bookTitle && !bookAuthor && !bookPages) return;
-  const addBook = new Book(bookTitle, bookAuthor, Number(bookPages));
-  return myLibrary.push(addBook);
+function addBookToLibrary() {
+  const newBook = new Book(
+    bookTitle.value,
+    bookAuthor.value,
+    Number(bookPages.value),
+    isRead.value
+  );
+
+  myLibrary.push(newBook);
 }
 const form = document.getElementById("form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   addBookToLibrary();
   displayBooks();
+  clearForm();
 });
-//   bookTitle.value = "";
-//   bookAuthor.value = "";
-//   bookPages.value = "";
+
+//clear form
+function clearForm() {
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = "";
+}
 
 function displayBooks() {
-  //const bookContainer = document.querySelector(".book-container");
   const bookCard = document.querySelector(".book-card");
-  const btnWrapper = document.querySelector(".btn-wrapper");
-  const buttonRemove = document.createElement("button");
-  const isReadButton = document.createElement("button");
-  const select = document.getElementById("select");
-  buttonRemove.textContent = "Remove";
-  isReadButton.textContent = "Read";
 
-  for (let book in myLibrary) {
-    bookCard.innerHTML += `<div class="book">${myLibrary[book].title}
-      <p class="author"> by ${myLibrary[book].author}</p>
+  bookCard.innerHTML += myLibrary
+    .map((book, idx) => {
+      return `<div class="book">
+      <h3>${book.title}</h3>
+      by
+      <div>${book.author}</div>
       </div>
       <div class="btn-wrapper">
       <button>Remove</button>
       <button>Read</button>
       </div>
       `;
-  }
+    })
+    //bookCard.remove()
+    .join("");
+  //   function removeBook() {
+
+  //   }
 }
-//console.log(displayBooks());
+
+addBookToLibrary.prototype.toggleRead = function () {
+  //return this.read
+};
+console.log(Object.getPrototypeOf(theHobbit) === Book.prototype);
 
 console.log(myLibrary);
